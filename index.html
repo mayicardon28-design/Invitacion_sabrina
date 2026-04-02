@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Sabrina - Mis 15</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(to bottom, #cceeff, #e6f7ff);
+  text-align: center;
+  color: #003366;
+}
+
+.portada {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 70px;
+}
+
+.btn {
+  background: #66ccff;
+  border: none;
+  padding: 15px 25px;
+  color: white;
+  font-size: 18px;
+  border-radius: 30px;
+}
+
+.seccion {
+  padding: 50px 20px;
+}
+
+.contador {
+  font-size: 25px;
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<section class="portada">
+  <h1>Sabrina</h1>
+  <p>Mis 15 años 🦋</p>
+  <button class="btn" onclick="abrir()">Ver invitación</button>
+</section>
+
+<section id="info" class="seccion" style="display:none;">
+  <h2>Estás invitado 💙</h2>
+  <p>📅 2 de mayo</p>
+  <p>⏰ 21:00 hs</p>
+  <p>📍 Lugar a confirmar</p>
+
+  <div id="countdown" class="contador"></div>
+
+  <a href="https://wa.me/549XXXXXXXXXX">
+    <button class="btn">Confirmar asistencia</button>
+  </a>
+</section>
+
+<audio id="musica" src="only.mp3"></audio>
+
+<script>
+function abrir() {
+  document.getElementById("info").style.display = "block";
+  document.getElementById("musica").play();
+  contador();
+}
+
+function contador() {
+  const fecha = new Date("May 2, 2026 21:00:00").getTime();
+
+  setInterval(() => {
+    const ahora = new Date().getTime();
+    const distancia = fecha - ahora;
+
+    const dias = Math.floor(distancia / (1000*60*60*24));
+    const horas = Math.floor((distancia % (1000*60*60*24))/(1000*60*60));
+
+    document.getElementById("countdown").innerHTML =
+      "Faltan " + dias + " días y " + horas + " horas 🦋";
+  }, 1000);
+}
+</script>
+
+</body>
+</html>
