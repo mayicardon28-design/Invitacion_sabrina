@@ -1,97 +1,97 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Sabrina - Mis 15</title>
+  <meta charset="UTF-8">
+  <title>Mis 15</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #000, #1a1a1a);
+      color: white;
+      text-align: center;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
+    .portada {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: url('fondo.jpg') center/cover;
+    }
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(to bottom, #cceeff, #e6f7ff);
-  text-align: center;
-  color: #003366;
-}
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 60px;
+    }
 
-.portada {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+    .btn {
+      background: #ff4da6;
+      border: none;
+      padding: 15px 25px;
+      color: white;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
 
-h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 70px;
-}
+    .seccion {
+      padding: 50px 20px;
+    }
 
-.btn {
-  background: #66ccff;
-  border: none;
-  padding: 15px 25px;
-  color: white;
-  font-size: 18px;
-  border-radius: 30px;
-}
-
-.seccion {
-  padding: 50px 20px;
-}
-
-.contador {
-  font-size: 25px;
-  margin-top: 20px;
-}
-</style>
+    .contador {
+      font-size: 30px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 
 <body>
 
-<section class="portada">
-  <h1>Sabrina</h1>
-  <p>Mis 15 años 🦋</p>
-  <button class="btn" onclick="abrir()">Ver invitación</button>
-</section>
+  <!-- PORTADA -->
+  <section class="portada">
+    <h1>Sabrina</h1>
+    <p>Mis 15 años</p>
+    <button class="btn" onclick="mostrarInvitacion()">Ver invitación</button>
+  </section>
 
-<section id="info" class="seccion" style="display:none;">
-  <h2>Estás invitado 💙</h2>
-  <p>📅 2 de mayo</p>
-  <p>⏰ 21:00 hs</p>
-  <p>📍 Lugar a confirmar</p>
+  <!-- INVITACIÓN -->
+  <section class="seccion" id="info" style="display:none;">
+    <h2>Te invito a mi fiesta</h2>
+    <p>📅 2 de mayo 2026</p>
+    <p>📍 Salón de eventos</p>
+    <p>⏰ 21:00 hs</p>
 
-  <div id="countdown" class="contador"></div>
+    <div class="contador" id="countdown"></div>
+  </section>
 
-  <a href="https://wa.me/549XXXXXXXXXX">
-    <button class="btn">Confirmar asistencia</button>
-  </a>
-</section>
+  <!-- MÚSICA -->
+  <audio id="musica" src="only.mp3"></audio>
 
-<audio id="musica" src="only.mp3"></audio>
+  <script>
+    function mostrarInvitacion() {
+      document.getElementById("info").style.display = "block";
+      document.getElementById("musica").play();
+      iniciarContador();
+    }
 
-<script>
-function abrir() {
-  document.getElementById("info").style.display = "block";
-  document.getElementById("musica").play();
-  contador();
-}
+    function iniciarContador() {
+      const fecha = new Date("may 2, 2026 21:00:00").getTime();
+      const x = setInterval(() => {
+        const ahora = new Date().getTime();
+        const distancia = fecha - ahora;
 
-function contador() {
-  const fecha = new Date("May 2, 2026 21:00:00").getTime();
+        const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
 
-  setInterval(() => {
-    const ahora = new Date().getTime();
-    const distancia = fecha - ahora;
+        document.getElementById("countdown").innerHTML =
+          "Faltan " + dias + " días";
 
-    const dias = Math.floor(distancia / (1000*60*60*24));
-    const horas = Math.floor((distancia % (1000*60*60*24))/(1000*60*60));
-
-    document.getElementById("countdown").innerHTML =
-      "Faltan " + dias + " días y " + horas + " horas 🦋";
-  }, 1000);
-}
-</script>
+      }, 1000);
+    }
+  </script>
 
 </body>
 </html>
